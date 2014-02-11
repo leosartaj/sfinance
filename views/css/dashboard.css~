@@ -1,0 +1,6 @@
+.caption1 {
+	margin-top: 100px;
+}
+.sell_quantity {
+	display: none;
+}
