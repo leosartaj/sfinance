@@ -31,6 +31,7 @@ if(!isset($_SESSION['username']))
 		<td>Quantity</td>
 		<td>Avg. Price</td>
 		<td>Present Price</td>
+		<td>Net</td>
 	</thead>
 <?php
 	for($i = 0; $i < $count; $i++)
@@ -39,8 +40,9 @@ if(!isset($_SESSION['username']))
 		echo("<td id=\"symbol$i\">{$user1[$i]['symbol']}</td>");
 		echo("<td id=\"q$i\">{$user1[$i]['quantity']}</td>");
 		$spent = ($user1[$i]['spent']/$user1[$i]['quantity']);
-		echo("<td id=\"spent$i\" name=spent class=\"active\">");printf("%.2f",$spent);echo("</td>");
-		echo("<td id=\"price$i\" name=price class=\"active\" onload=\"present_price($i);\"></td>");
+		echo("<td id=\"spent$i\" name=spent$i class=\"active\">");printf("%.2f",$spent);echo("</td>");
+		echo("<td id=\"price$i\" name=price$i class=\"active\" onclick=\"get_price($i);\"><a>Click</a></td>");
+		echo("<td id=\"net$i\" name=net$i class=\"active\"></td>");
 		echo("<td class=\"sell_quantity\" id=\"quantity$i\"><input id=\"quantity1$i\" type=text placeholder=Quantity></td>");
 		echo("<td id=\"sell$i\" onclick=\"quantity_display($i);\" name=sell class=\"active\" ><a>Sell</a></td>");
 		echo("</tr>");

@@ -18,4 +18,10 @@
 	print(json_encode($price));
         fclose($handle);
     }
+    else
+	{
+		$price['price'] = "Error";
+		print(json_encode($price));
+	}
+
 ?>

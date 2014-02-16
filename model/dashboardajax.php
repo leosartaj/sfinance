@@ -19,14 +19,13 @@ session_start();
     }
     else
     {
-	    print("Error in ajax call");
-	    exit;
+	exit;
     }
 	$connect = 'mysql:host=localhost;dbname=sfinance';
 	$user = 'root';
 	$pass = '13123016';
 	$dbh = new PDO($connect, $user, $pass);
-	$query = $dbh->query("SELECT quantity FROM shares WHERE user_id='{$_SESSION['user_id']}' AND symbol='{$_GET['symbol']}';");
+	$query = $dbh->query("SELECT quantity,spent FROM shares WHERE user_id='{$_SESSION['user_id']}' AND symbol='{$_GET['symbol']}';");
 	$user1 = $query->fetch(PDO::FETCH_ASSOC);
 	if($user1['quantity'] < $_GET['quantity'])
 	{
@@ -34,15 +33,18 @@ session_start();
 		exit;
 	}
 	$quantity = $user1['quantity'] - $_GET['quantity']; 
+	$spent = $user1['spent'] - ($price * $_GET['quantity']);
 	if($quantity != 0)
 	{
-		$sql = "UPDATE shares SET quantity=:quantity WHERE user_id=:user_id AND symbol=:symbol;";
+		$sql = "UPDATE shares SET quantity=:quantity,spent=:spent WHERE user_id=:user_id AND symbol=:symbol;";
 		$query = $dbh->prepare($sql);
 		$query->execute( array(
 			':quantity' => $quantity,
+			':spent' => $spent,
 			':symbol' => $_GET['symbol'],
 			':user_id' => $_SESSION['user_id'])
 		);
+		$spent = $spent/$user1['quantity'];
 	}
 	else
 	{
@@ -62,6 +64,6 @@ session_start();
 		':balance' => $balance,
 		':user_id' => $_SESSION['user_id'])
 	);
-	$data = array('quantity' => $quantity, 'balance' => $balance);
+	$data = array('quantity' => $quantity, 'balance' => $balance, 'price' => $price, 'spent' => $spent);
 	print(json_encode($data));
 ?>
