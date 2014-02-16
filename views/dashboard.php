@@ -14,9 +14,9 @@ if(!isset($_SESSION['username']))
 	render('header');
 	$connect = 'mysql:host=localhost;dbname=sfinance';
 	$user = 'root';
-	$pass = '';
+	$pass = '13123016';
 	$dbh = new PDO($connect, $user, $pass);
-	$query = $dbh->query("SELECT symbol,quantity FROM shares where user_id='{$_SESSION['user_id']}'");
+	$query = $dbh->query("SELECT symbol,quantity,spent FROM shares where user_id='{$_SESSION['user_id']}'");
 	$query2 = $dbh->query("SELECT balance FROM balance where user_id='{$_SESSION['user_id']}'");
 	$user1 = $query->fetchAll(PDO::FETCH_ASSOC);
 	$user2 = $query2->fetch(PDO::FETCH_ASSOC);
@@ -29,6 +29,8 @@ if(!isset($_SESSION['username']))
 	<thead>
 		<td>Symbol</td>
 		<td>Quantity</td>
+		<td>Avg. Price</td>
+		<td>Present Price</td>
 	</thead>
 <?php
 	for($i = 0; $i < $count; $i++)
@@ -36,6 +38,9 @@ if(!isset($_SESSION['username']))
 		echo("<tr>");
 		echo("<td id=\"symbol$i\">{$user1[$i]['symbol']}</td>");
 		echo("<td id=\"q$i\">{$user1[$i]['quantity']}</td>");
+		$spent = ($user1[$i]['spent']/$user1[$i]['quantity']);
+		echo("<td id=\"spent$i\" name=spent class=\"active\">");printf("%.2f",$spent);echo("</td>");
+		echo("<td id=\"price$i\" name=price class=\"active\" onload=\"present_price($i);\"></td>");
 		echo("<td class=\"sell_quantity\" id=\"quantity$i\"><input id=\"quantity1$i\" type=text placeholder=Quantity></td>");
 		echo("<td id=\"sell$i\" onclick=\"quantity_display($i);\" name=sell class=\"active\" ><a>Sell</a></td>");
 		echo("</tr>");

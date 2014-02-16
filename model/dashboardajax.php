@@ -24,7 +24,7 @@ session_start();
     }
 	$connect = 'mysql:host=localhost;dbname=sfinance';
 	$user = 'root';
-	$pass = '';
+	$pass = '13123016';
 	$dbh = new PDO($connect, $user, $pass);
 	$query = $dbh->query("SELECT quantity FROM shares WHERE user_id='{$_SESSION['user_id']}' AND symbol='{$_GET['symbol']}';");
 	$user1 = $query->fetch(PDO::FETCH_ASSOC);

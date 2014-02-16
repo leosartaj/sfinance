@@ -24,7 +24,7 @@ session_start();
     }
 	$connect = 'mysql:host=localhost;dbname=sfinance';
 	$user = 'root';
-	$pass = '';
+	$pass = '13123016';
 	$dbh = new PDO($connect, $user, $pass);
 	$query = $dbh->query("SELECT * FROM balance where user_id='{$_SESSION['user_id']}';");
 	$user1 = $query->fetch(PDO::FETCH_ASSOC);
@@ -44,23 +44,27 @@ session_start();
 	$user1 = $query->fetch(PDO::FETCH_ASSOC);
 	if(isset($user1['symbol']))
 	{
-		$sql = "UPDATE shares SET quantity=:quantity WHERE user_id=:user_id AND symbol=:symbol;";
+		$user1['spent'] += ($price * $_GET['quantity']);
+		$sql = "UPDATE shares SET quantity=:quantity, spent=:spent WHERE user_id=:user_id AND symbol=:symbol;";
 		$quantity = $user1['quantity'] + $_GET['quantity'];
 		$query = $dbh->prepare($sql);
 		$query->execute( array(
 			':quantity' => $quantity,
 			':symbol' => $_GET['symbol'],
+			':spent' => $user1['spent'],
 			':user_id' => $_SESSION['user_id'])
 		);
 		print("CHECK");
 	}
 	else
 	{
-		$sql = "INSERT INTO shares (user_id,symbol,quantity) VALUES (:user_id,:symbol,:quantity);";
+		$spent = ($price * $_GET['quantity']);
+		$sql = "INSERT INTO shares (user_id,symbol,quantity,spent) VALUES (:user_id,:symbol,:quantity,:spent);";
 		$query = $dbh->prepare($sql);
 		$query->execute( array(
 			':user_id' => $_SESSION['user_id'],
 			':symbol' => $_GET['symbol'],
+			':spent' => $spent,
 			':quantity' => $_GET['quantity'])
 		);
 		print("CHECKED");

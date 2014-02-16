@@ -2,7 +2,7 @@
 session_start();
 	$connect = 'mysql:host=localhost;dbname=sfinance';
 	$user = 'root';
-	$pass = '';
+	$pass = '13123016';
 	$dbh = new PDO($connect, $user, $pass);
 	$sql = "INSERT INTO info_users (first,last,email) VALUES (:first,:last,:email);";
 	$query = $dbh->prepare($sql);

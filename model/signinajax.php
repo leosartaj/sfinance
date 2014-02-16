@@ -2,7 +2,7 @@
 session_start();
 	$connect = 'mysql:host=localhost;dbname=sfinance';
 	$user = 'root';
-	$pass = '';
+	$pass = '13123016';
 	$dbh = new PDO($connect, $user, $pass);
 
 	$query = $dbh->query("SELECT * FROM users where username='{$_GET['username']}' AND password='{$_GET['password']}'");
