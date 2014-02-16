@@ -13,8 +13,17 @@ if(isset($_SESSION['username']))
 	<div class="login" id="login">
 		<form class="form-signin" role="form" onsubmit="check();return false;" method=post>
 		  <h2 class="form-signin-heading">Please Sign in</h2>
+		<div id="warning_name">
+		  <label class="control-label" id="length">username should be atleast 6 characters</label>
 		  <input type="text" class="form-control" name=username placeholder="Username" id=username autofocus>
+		</div>
+		<div id="warning_pass">
+		  <label class="control-label pass" id="length1">password should be atleast 6 characters</label>
 		  <input type="password" name="password" class="form-control" placeholder="Password" id=password >
+		</div>
+		<div id="check">
+			<label class="control-label auth" id="auth">username or password incorrect</label>
+		</div>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 		<label>Not already a user, <a onclick=toggle(); >Sign Up </a>now</label>
 		</form>

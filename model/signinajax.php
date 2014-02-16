@@ -7,7 +7,10 @@ session_start();
 
 	$query = $dbh->query("SELECT * FROM users where username='{$_GET['username']}' AND password='{$_GET['password']}'");
 	$user1 = $query->fetch(PDO::FETCH_ASSOC);
-		print("1");
+	if(isset($user1['username']))
+	{
+		print("correct");
+	}
 		$_SESSION['username'] = $_GET['username'];
 		$_SESSION['user_id'] = $user1['user_id'];
 	$dbh = null;

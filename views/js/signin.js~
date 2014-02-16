@@ -1,11 +1,22 @@
 function check() {
-	if(document.getElementById("username").value.length <= 6) {
-		alert("Yes");
+	if(document.getElementById("username").value.length < 6) {
+		document.getElementById("warning_name").className = "form-group has-error";
+		document.getElementById("length").style.display = "inline";
 		return false;
 	}
-	if(document.getElementById("password").value.length <= 6) {
-		alert("Yup");
+	else {
+		document.getElementById("warning_name").className = "";
+		document.getElementById("length").style.display = "none";
+	}
+
+	if(document.getElementById("password").value.length < 6) {
+		document.getElementById("warning_pass").className = "form-group has-error";
+		document.getElementById("length1").style.display = "inline";
 		return false;
+	}
+	else {
+		document.getElementById("warning_pass").className = "";
+		document.getElementById("length1").style.display = "none";
 	}
 
 	var xhr = new XMLHttpRequest();
@@ -30,8 +41,13 @@ function check() {
 	{
 	    if (xhr.status == 200)
 	    {
-		    if(xhr.responseText === "1")
+		    if(xhr.responseText === "correct")
 			    window.location = "http://localhost/project1/views/homepage.php";
+		    else
+		    {
+			document.getElementById("check").className = "form-group has-error";
+			document.getElementById("auth").style.display = "inline";
+		    }
 	    }
 	    else
 		alert("Error with Ajax call!");
