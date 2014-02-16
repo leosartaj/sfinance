@@ -31,11 +31,26 @@ if(isset($_SESSION['username']))
 	<div class="register" id="register">
 		<form class="form-signin" role="form" onsubmit="register(); return false;" method=POST>
 		  <h2 class="form-signin-heading">Register</h2>
+		<div id="warning_first">
+		  <label class="control-label first" id="firstl">Please fill</label>
 		  <input type="text" class="form-control" id=first placeholder="First Name" autofocus>
+		</div>
+		<div id="warning_last">
+		  <label class="control-label last" id="lastl">Please fill</label>
 		  <input type="text" class="form-control" id=last placeholder="Last Name" autofocus>
+		</div>
+		<div id="warning_email">
+		  <label class="control-label email" id="emaill">Please fill</label>
 		  <input type="text" class="form-control" id=email placeholder="Email-Address">
+		</div>
+		<div id="warning_newname">
+		  <label class="control-label newname" id="newnamel">username should be atleast 6 characters</label>
 		  <input type="text" class="form-control" id=username_new placeholder="Username" autofocus>
+		</div>
+		<div id="warning_newpassword">
+		  <label class="control-label newpassword" id="newpasswordl">password should be atleast 6 characters</label>
 		  <input type="password" class="form-control" id=password_new placeholder="Password">
+		</div>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 		<label>Already a user,<a onclick=toggle(); >Login</a></label>
 		</form>

@@ -57,17 +57,50 @@ function check() {
 	xhr.send(null);
 }
 function register() {
-	if(document.getElementById("first").value === "" || document.getElementById("last").value === "" || document.getElementById("email").value === "") {
-		alert("1");
+	if(document.getElementById("first").value === "") {
+		document.getElementById("warning_first").className = "form-group has-error";
+		document.getElementById("firstl").style.display = "inline";
 		return false;
 	}
-	if(document.getElementById("username_new").value.length <= 6) {
-		alert("2");
+	else {
+		document.getElementById("warning_first").className = "";
+		document.getElementById("firstl").style.display = "none";
+	}
+	if(document.getElementById("last").value === "") {
+		document.getElementById("warning_last").className = "form-group has-error";
+		document.getElementById("lastl").style.display = "inline";
 		return false;
 	}
-	if(document.getElementById("password_new").value.length <= 6) {
-		alert("3");
+	else {
+		document.getElementById("warning_last").className = "";
+		document.getElementById("lastl").style.display = "none";
+	}
+	if(document.getElementById("email").value === "") {
+		document.getElementById("warning_email").className = "form-group has-error";
+		document.getElementById("emaill").style.display = "inline";
 		return false;
+	}
+	else {
+		document.getElementById("warning_email").className = "";
+		document.getElementById("emaill").style.display = "none";
+	}
+	if(document.getElementById("username_new").value.length < 6) {
+		document.getElementById("warning_newname").className = "form-group has-error";
+		document.getElementById("newnamel").style.display = "inline";
+		return false;
+	}
+	else {
+		document.getElementById("warning_newname").className = "";
+		document.getElementById("newnamel").style.display = "none";
+	}
+	if(document.getElementById("password_new").value.length < 6) {
+		document.getElementById("warning_newpassword").className = "form-group has-error";
+		document.getElementById("newpasswordl").style.display = "inline";
+		return false;
+	}
+	else {
+		document.getElementById("warning_newpassword").className = "";
+		document.getElementById("newpasswordl").style.display = "none";
 	}
 
 	var xhr = new XMLHttpRequest();
