@@ -24,7 +24,7 @@ if(!isset($_SESSION['username']))
 	$_SESSION['count'] = $count;
 ?>
 <div class="table-responsive">
-<table class="table table-condensed table-hover table-bordered" style="max-width:100px;">
+<table class="table table-condensed table-hover table-bordered dashboard"">
 	<caption class=caption1><h3>Shares</h3></caption>
 	<thead>
 		<td>Symbol</td>
@@ -50,7 +50,7 @@ if(!isset($_SESSION['username']))
 ?>
 </table>
 </div>
-	<span class="help-block" ><strong>Available Balance: </strong><span id="avail-balance"><?= $user2['balance'] ?></span>$</span>
+	<span class="help-block bal"><strong>Available Balance: </strong><span id="avail-balance"><?= $user2['balance'] ?></span>$</span>
 <?php
 	render('footer');
 ?>

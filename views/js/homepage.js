@@ -25,9 +25,13 @@ function getquote() {
 	    if (xhr.status == 200)
 	    {
 		    var quote = eval("(" + xhr.responseText + ")");
-		    document.getElementById("price").innerHTML = global.quote_symbol + ": " + quote.price + "$ " + "<button id=button class=\"btn btn-primary btn-xs\" onclick=\"buy();return false;\"></button>";
-		    document.getElementById("button").style.display = "inline";
-		    document.getElementById("button").innerHTML = "Buy Share";
+			if(quote.price !== "Error") {
+			    document.getElementById("price").innerHTML = global.quote_symbol + ": " + quote.price + "$ " + "<button id=button class=\"btn btn-primary btn-xs\" onclick=\"buy();return false;\"></button>";
+			    document.getElementById("button").style.display = "inline";
+			    document.getElementById("button").innerHTML = "Buy Share";
+			}
+			else
+				document.getElementById("price").innerHTML = "Error Internet";
 	    }
 	    else
 		alert("Error with Ajax call!");

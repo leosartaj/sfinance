@@ -44,7 +44,7 @@ session_start();
 			':symbol' => $_GET['symbol'],
 			':user_id' => $_SESSION['user_id'])
 		);
-		$spent = $spent/$user1['quantity'];
+		$spent = $spent/$quantity;
 	}
 	else
 	{
