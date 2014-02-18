@@ -40,9 +40,9 @@ if(!isset($_SESSION['username']))
 		echo("<td id=\"symbol$i\">{$user1[$i]['symbol']}</td>");
 		echo("<td id=\"q$i\">{$user1[$i]['quantity']}</td>");
 		$spent = ($user1[$i]['spent']/$user1[$i]['quantity']);
-		echo("<td id=\"spent$i\" name=spent$i class=\"active\">");printf("%.2f",$spent);echo("</td>");
-		echo("<td id=\"price$i\" name=price$i class=\"active\" onclick=\"get_price($i);\"><a>Click</a></td>");
-		echo("<td id=\"net$i\" name=net$i class=\"active\"></td>");
+		echo("<td id=\"spent$i\" name=spent$i>");printf("%.2f",$spent);echo("</td>");
+		echo("<td id=\"price$i\" name=price$i onclick=\"get_price($i);\"><a>Click</a></td>");
+		echo("<td id=\"net$i\" name=net$i></td>");
 		echo("<td class=\"sell_quantity\" id=\"quantity$i\"><input id=\"quantity1$i\" type=text placeholder=Quantity></td>");
 		echo("<td id=\"sell$i\" onclick=\"quantity_display($i);\" name=sell class=\"active\" ><a>Sell</a></td>");
 		echo("</tr>");
@@ -50,7 +50,7 @@ if(!isset($_SESSION['username']))
 ?>
 </table>
 </div>
-	<span class="help-block bal"><strong>Available Balance: </strong><span id="avail-balance"><?= $user2['balance'] ?></span>$</span>
+	<p><span class="help-block bal"><strong>Available Balance: </strong><span id="avail-balance"><?= $user2['balance'] ?></span>$</span></p>
 <?php
 	render('footer');
 ?>

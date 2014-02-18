@@ -19,6 +19,7 @@ if(!isset($_SESSION['username']))
 		<input type="text" class=form-control name=quote placeholder="Get Quote" id=symbol>
 		<br>
 		<button class="btn btn-lg btn-primary btn-block" type=submit>Get Quote</button>
+		<p><img class=load id=load src="gif/load.gif"></p>
 		<div id=price class="text-muted"></div>
 		<div id=buy><label>Quantity: </label><input placeholder=1 type=text class="form-control" id=quantity></div>
 		<br>

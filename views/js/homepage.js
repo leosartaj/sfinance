@@ -2,6 +2,8 @@ var global = {};
 function getquote() {
 	document.getElementById("buy2").style.display = "none";
 	document.getElementById("buy").style.display = "none";
+	document.getElementById("load").style.display = "block";
+
 	var xhr = new XMLHttpRequest();
 
 	if (xhr == null)
@@ -9,7 +11,10 @@ function getquote() {
 	 alert("Ajax not supported by your browser!");
 	 return;
 	}
-
+	if(document.getElementById("symbol").value === "") {
+				document.getElementById("price").innerHTML = "Pease fill in a symbol";
+		return false;
+	}
 	 global.quote_symbol = document.getElementById("symbol").value;
 	 global.quote_symbol = global.quote_symbol.toUpperCase();
 
@@ -26,12 +31,15 @@ function getquote() {
 	    {
 		    var quote = eval("(" + xhr.responseText + ")");
 			if(quote.price !== "Error") {
+				document.getElementById("load").style.display = "none";
 			    document.getElementById("price").innerHTML = global.quote_symbol + ": " + quote.price + "$ " + "<button id=button class=\"btn btn-primary btn-xs\" onclick=\"buy();return false;\"></button>";
 			    document.getElementById("button").style.display = "inline";
 			    document.getElementById("button").innerHTML = "Buy Share";
 			}
-			else
-				document.getElementById("price").innerHTML = "Error Internet";
+			else {
+				document.getElementById("price").innerHTML = "error internet";
+				document.getElementById("load").style.display = "none";
+			}
 	    }
 	    else
 		alert("Error with Ajax call!");
