@@ -1,5 +1,9 @@
 <?php
 session_start();
+	require_once('../includes/PasswordHash.php');
+	$hasher = new PasswordHash(8,false);
+	$password = $_GET['password'];
+	$_GET['password'] = $hasher->HashPassword($password);
 	$connect = 'mysql:host=localhost;dbname=sfinance';
 	$user = 'root';
 	$pass = '13123016';
