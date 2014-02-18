@@ -31,7 +31,7 @@ session_start();
 	$balance = $user1['balance'] - ($_GET['quantity'] * $price);
 	if($balance < 0)
 	{
-		print("insufficient funds");
+		print("funds");
 		exit;
 	}
 	$sql = "UPDATE balance SET balance=:balance WHERE user_id=:user_id";

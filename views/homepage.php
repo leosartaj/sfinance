@@ -21,9 +21,14 @@ if(!isset($_SESSION['username']))
 		<button class="btn btn-lg btn-primary btn-block" type=submit>Get Quote</button>
 		<p><img class=load id=load src="gif/load.gif"></p>
 		<div id=price class="text-muted"></div>
-		<div id=buy><label>Quantity: </label><input placeholder=1 type=text class="form-control" id=quantity></div>
+		<div id="warning_q">
+		  <label class="control-label q" id="length">Please fill</label>
+		<div id=buy><label>Quantity: </label><input placeholder=Quantity type=text class="form-control" id=quantity></div>
+		</div>
 		<br>
 		<button id=buy2 class="btn btn-primary btn-xs" onclick="buy_share();return false;">Buy</button>
+		<p><img class=load id=load1 src="gif/load.gif"></p>
+		<div id=funds class="text-danger">Insufficient Funds</div>
 	</form>
 	</div>
 

@@ -58,7 +58,7 @@ function get_price(i) {
 		   var data = eval('(' + xhr.responseText + ')');
 		    document.getElementById("price" + i).innerHTML = data.price;
 	if(data.price !== "Error")
-		    document.getElementById("net" + i).innerHTML = (data.price - document.getElementById("spent"+i).innerHTML);
+		    document.getElementById("net" + i).innerHTML = (data.price - document.getElementById("spent"+i).innerHTML).toPrecision(2);
 	    }
 	    else
 		alert("Error with Ajax call!");

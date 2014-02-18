@@ -2,7 +2,8 @@ var global = {};
 function getquote() {
 	document.getElementById("buy2").style.display = "none";
 	document.getElementById("buy").style.display = "none";
-	document.getElementById("load").style.display = "block";
+	document.getElementById("price").className = "text-muted";
+	document.getElementById("funds").style.display= "none";
 
 	var xhr = new XMLHttpRequest();
 
@@ -15,6 +16,7 @@ function getquote() {
 				document.getElementById("price").innerHTML = "Pease fill in a symbol";
 		return false;
 	}
+	 document.getElementById("load").style.display = "block";
 	 global.quote_symbol = document.getElementById("symbol").value;
 	 global.quote_symbol = global.quote_symbol.toUpperCase();
 
@@ -53,11 +55,15 @@ function buy() {
 	if(document.getElementById("button").style.display == "inline") {
 		document.getElementById("buy").style.display = "inline";
 		document.getElementById("button").style.display = "none";
+		document.getElementById("price").className = "text-muted";
 		document.getElementById("buy2").style.display = "inline";
+		document.getElementById("funds").style.display= "none";
 	}
 }
 	
 function buy_share() {
+	document.getElementById("load1").style.display = "block";
+	document.getElementById("funds").style.display= "none";
 	var xhr = new XMLHttpRequest();
 
 	if (xhr == null)
@@ -65,6 +71,16 @@ function buy_share() {
 	 alert("Ajax not supported by your browser!");
 	 return;
 	}
+	if(document.getElementById("quantity").value === "")
+	{
+		document.getElementById("warning_q").className = "form-group has-error";
+		document.getElementById("length").style.display = "inline";
+		return false;
+	}
+	else {
+		document.getElementById("warning_q").className = "";
+		document.getElementById("length").style.display = "none";
+	}	
 	var quantity = document.getElementById("quantity").value;
 	// construct URL
 	var url = "http://localhost/project1/model/buyajax.php?symbol=" + global.quote_symbol + "&quantity=" + quantity;
@@ -76,7 +92,20 @@ function buy_share() {
 	{
 	    if (xhr.status == 200)
 	    {
-		    alert(xhr.responseText);
+		if(xhr.responseText !== "funds")
+		{
+			document.getElementById("load1").style.display = "none";
+			document.getElementById("buy2").style.display = "none";
+			document.getElementById("buy").style.display = "none";
+			document.getElementById("button").style.display = "inline";
+			document.getElementById("price").className = "text-success";
+			document.getElementById("funds").style.display= "none";
+		}
+		else {
+			document.getElementById("load1").style.display = "none";
+			document.getElementById("funds").style.display= "inline";
+		}
+			
 	    }
 	    else
 		alert("Error with Ajax call!");

@@ -31,7 +31,7 @@ body {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-#buy, #buy2, #button, .load {
+#buy, #buy2, #button, .load, #length, #funds {
 	display: none;
 }
 .load {
