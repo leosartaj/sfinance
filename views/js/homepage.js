@@ -34,9 +34,14 @@ function getquote() {
 		    var quote = eval("(" + xhr.responseText + ")");
 			if(quote.price !== "Error") {
 				document.getElementById("load").style.display = "none";
+				if(quote.price != 0) {
 			    document.getElementById("price").innerHTML = global.quote_symbol + ": " + quote.price + "$ " + "<button id=button class=\"btn btn-primary btn-xs\" onclick=\"buy();return false;\"></button>";
 			    document.getElementById("button").style.display = "inline";
 			    document.getElementById("button").innerHTML = "Buy Share";
+				}
+				else {
+					document.getElementById("price").innerHTML = "Incorrect Symbol";
+				}
 			}
 			else {
 				document.getElementById("price").innerHTML = "error internet";
@@ -62,8 +67,6 @@ function buy() {
 }
 	
 function buy_share() {
-	document.getElementById("load1").style.display = "block";
-	document.getElementById("funds").style.display= "none";
 	var xhr = new XMLHttpRequest();
 
 	if (xhr == null)
@@ -81,6 +84,8 @@ function buy_share() {
 		document.getElementById("warning_q").className = "";
 		document.getElementById("length").style.display = "none";
 	}	
+	document.getElementById("load1").style.display = "block";
+	document.getElementById("funds").style.display= "none";
 	var quantity = document.getElementById("quantity").value;
 	// construct URL
 	var url = "http://localhost/project1/model/buyajax.php?symbol=" + global.quote_symbol + "&quantity=" + quantity;
