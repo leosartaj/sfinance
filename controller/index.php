@@ -1,7 +1,11 @@
 <?php
 session_start();
 if(isset($_SESSION['username']))
-	session_destroy();
+	{
+		session_destroy();
+		header('Location: index.php');
+		exit;
+	}
 	require_once('../includes/helper.php');
 	render('title', array('title' => '$Finance'));
 ?>

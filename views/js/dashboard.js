@@ -9,7 +9,6 @@ function quantity_display(i) {
 		 return;
 		}
 		var quantity = document.getElementById("quantity1"+i).value;
-		alert(quantity);
 		var symbol = document.getElementById("symbol"+i).innerHTML;
 		// construct URL
 		var url = "http://localhost/project1/model/dashboardajax.php?quantity=" + quantity + "&symbol=" + symbol;
@@ -21,12 +20,12 @@ function quantity_display(i) {
 		{
 		    if (xhr.status == 200)
 		    {
-			   var data = eval('(' + xhr.responseText + ')');
-			    document.getElementById("q" + i).innerHTML = data.quantity;
-			    document.getElementById("avail-balance").innerHTML = data.balance;
+			var data = eval('(' + xhr.responseText + ')');
+			document.getElementById("q" + i).innerHTML = data.quantity;
+			document.getElementById("avail-balance").innerHTML = data.balance.toPrecision(4);
 			document.getElementById("quantity"+i).style.display = "none";
-			document.getElementById("price" + i).innerHTML = data.price;
-			document.getElementById("spent" + i).innerHTML = data.spent;
+			document.getElementById("price" + i).innerHTML = data.price.toPrecision(2);
+			document.getElementById("spent" + i).innerHTML = data.spent.toPrecision(2);
 		    }
 		    else
 			alert("Error with Ajax call!");
