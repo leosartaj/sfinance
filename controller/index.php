@@ -18,11 +18,11 @@ if(isset($_SESSION['username']))
 		<form class="form-signin" role="form" onsubmit="check();return false;" method=post>
 		  <h2 class="form-signin-heading">Please Sign in</h2>
 		<div id="warning_name">
-		  <label class="control-label" id="length">username should be atleast 6 characters</label>
+		  <label class="control-label" id="length">Please give a valid username</label>
 		  <input type="text" class="form-control" name=username placeholder="Username" id=username autofocus>
 		</div>
 		<div id="warning_pass">
-		  <label class="control-label pass" id="length1">password should be atleast 6 characters</label>
+		  <label class="control-label pass" id="length1">Please give a valid password</label>
 		  <input type="password" name="password" class="form-control" placeholder="Password" id=password >
 		</div>
 		<div id="check">
@@ -36,23 +36,23 @@ if(isset($_SESSION['username']))
 		<form class="form-signin" role="form" onsubmit="register(); return false;" method=POST>
 		  <h2 class="form-signin-heading">Register</h2>
 		<div id="warning_first">
-		  <label class="control-label first" id="firstl">Please fill</label>
+		  <label class="control-label first" id="firstl">Please fill a valid name</label>
 		  <input type="text" class="form-control" id=first placeholder="First Name" autofocus>
 		</div>
 		<div id="warning_last">
-		  <label class="control-label last" id="lastl">Please fill</label>
+		  <label class="control-label last" id="lastl">Please fill a valid name</label>
 		  <input type="text" class="form-control" id=last placeholder="Last Name" autofocus>
 		</div>
 		<div id="warning_email">
-		  <label class="control-label email" id="emaill">Please fill</label>
+		  <label class="control-label email" id="emaill">Please fill valid email</label>
 		  <input type="text" class="form-control" id=email placeholder="Email-Address">
 		</div>
 		<div id="warning_newname">
-		  <label class="control-label newname" id="newnamel">username should be atleast 6 characters</label>
+		  <label class="control-label newname" id="newnamel">Please give a valid username</label>
 		  <input type="text" class="form-control" id=username_new placeholder="Username" autofocus>
 		</div>
 		<div id="warning_newpassword">
-		  <label class="control-label newpassword" id="newpasswordl">password should be atleast 6 characters</label>
+		  <label class="control-label newpassword" id="newpasswordl">Please give a valid password</label>
 		  <input type="password" class="form-control" id=password_new placeholder="Password">
 		</div>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

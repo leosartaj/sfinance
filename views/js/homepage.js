@@ -1,5 +1,7 @@
 var global = {};
 function getquote() {
+	var sym_reg = /^(?:[a-zA-Z.]+)$/;
+	var symbol = document.getElementById("symbol").value;
 	document.getElementById("buy2").style.display = "none";
 	document.getElementById("buy").style.display = "none";
 	document.getElementById("price").className = "text-muted";
@@ -12,8 +14,8 @@ function getquote() {
 	 alert("Ajax not supported by your browser!");
 	 return;
 	}
-	if(document.getElementById("symbol").value === "") {
-				document.getElementById("price").innerHTML = "Pease fill in a symbol";
+	if((sym_reg.exec(symbol)) === null) {
+			document.getElementById("price").innerHTML = "Pease fill a valid symbol";
 		return false;
 	}
 	 document.getElementById("load").style.display = "block";
@@ -67,6 +69,8 @@ function buy() {
 }
 	
 function buy_share() {
+	var num_reg = /^(?:[0-9]+)$/;
+	var quantity = document.getElementById("quantity").value;
 	var xhr = new XMLHttpRequest();
 
 	if (xhr == null)
@@ -74,7 +78,7 @@ function buy_share() {
 	 alert("Ajax not supported by your browser!");
 	 return;
 	}
-	if(document.getElementById("quantity").value === "")
+	if((num_reg.exec(quantity)) === null)
 	{
 		document.getElementById("warning_q").className = "form-group has-error";
 		document.getElementById("length").style.display = "inline";

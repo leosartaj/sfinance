@@ -22,7 +22,7 @@ if(!isset($_SESSION['username']))
 		<p><img class=load id=load src="gif/load.gif"></p>
 		<div id=price class="text-muted"></div>
 		<div id="warning_q">
-		  <label class="control-label q" id="length">Please fill</label>
+		  <label class="control-label q" id="length">Please fill valid</label>
 		<div id=buy><label>Quantity: </label><input placeholder=Quantity type=text class="form-control" id=quantity></div>
 		</div>
 		<br>
