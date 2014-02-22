@@ -4,6 +4,12 @@
 
 Only for local development, some links are hard-coded to localhost
 
+Installation
+
+All the file should be stored in sfinance
+
+Go to localhost/sfinance/main to access.
+
 Needs a MySQL database named sfinance
 
 Needs The Following tables
