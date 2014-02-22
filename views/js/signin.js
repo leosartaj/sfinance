@@ -34,7 +34,7 @@ function check() {
 	var password = document.getElementById("password").value;
 
 	// construct URL
-	var url = "http://localhost/project1/model/signinajax.php?username=" + username + "&" + "password=" + password;
+	var url = "http://localhost/sfinance/model/signinajax.php?username=" + username + "&" + "password=" + password;
 
 	xhr.onreadystatechange =
 	function()
@@ -45,7 +45,7 @@ function check() {
 	    if (xhr.status == 200)
 	    {
 		    if(xhr.responseText === "correct")
-			    window.location = "http://localhost/project1/homepage";
+			    window.location = "http://localhost/sfinance/homepage";
 		    else
 		    {
 			document.getElementById("check").className = "form-group has-error";
@@ -129,7 +129,7 @@ function register() {
 	var last = document.getElementById("last").value;
 
 	// construct URL
-	var url = "http://localhost/project1/model/registerajax.php?username=" + username + "&" + "password=" + password + "&" + "email=" + email + "&" + "first=" + first + "&" + "last=" + last;
+	var url = "http://localhost/sfinance/model/registerajax.php?username=" + username + "&" + "password=" + password + "&" + "email=" + email + "&" + "first=" + first + "&" + "last=" + last;
 
 	xhr.onreadystatechange =
 	function()
@@ -140,7 +140,7 @@ function register() {
 	    if (xhr.status == 200)
 	    {
 		    if(xhr.responseText === "1")
-			    window.location = "http://localhost/project1/homepage";
+			    window.location = "http://localhost/sfinance/homepage";
 	    }
 	    else
 		alert("Error with Ajax call!");

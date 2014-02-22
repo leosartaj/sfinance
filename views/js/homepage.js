@@ -23,7 +23,7 @@ function getquote() {
 	 global.quote_symbol = global.quote_symbol.toUpperCase();
 
 	// construct URL
-	var url = "http://localhost/project1/model/quoteajax.php?symbol=" + global.quote_symbol;
+	var url = "http://localhost/sfinance/model/quoteajax.php?symbol=" + global.quote_symbol;
 
 	xhr.onreadystatechange =
 	function()
@@ -92,7 +92,7 @@ function buy_share() {
 	document.getElementById("funds").style.display= "none";
 	var quantity = document.getElementById("quantity").value;
 	// construct URL
-	var url = "http://localhost/project1/model/buyajax.php?symbol=" + global.quote_symbol + "&quantity=" + quantity;
+	var url = "http://localhost/sfinance/model/buyajax.php?symbol=" + global.quote_symbol + "&quantity=" + quantity;
 	xhr.onreadystatechange =
 	function()
 	{

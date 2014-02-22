@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION['username']))
 	{
 		session_destroy();
-		header('Location: sfinance');
+		header('Location: main');
 		exit;
 	}
 	require_once('../includes/helper.php');

@@ -15,7 +15,7 @@ function quantity_display(i) {
 		}
 		var symbol = document.getElementById("symbol"+i).innerHTML;
 		// construct URL
-		var url = "http://localhost/project1/model/dashboardajax.php?quantity=" + quantity + "&symbol=" + symbol;
+		var url = "http://localhost/sfinance/model/dashboardajax.php?quantity=" + quantity + "&symbol=" + symbol;
 		xhr.onreadystatechange =
 		function()
 		{
@@ -49,7 +49,7 @@ function get_price(i) {
 	}
 	var symbol = document.getElementById("symbol" + i).innerHTML;
 	// construct URL
-	var url = "http://localhost/project1/model/quoteajax.php?symbol=" + symbol;
+	var url = "http://localhost/sfinance/model/quoteajax.php?symbol=" + symbol;
 	xhr.onreadystatechange =
 	function()
 	{

@@ -16,7 +16,7 @@
 <?php
 	if(isset($_SESSION['username']))
 	{
-	  echo("<li style=\"margin-right:10px;\"><a href=\"../sfinance\">Logout</a></li>");
+	  echo("<li style=\"margin-right:10px;\"><a href=\"../main\">Logout</a></li>");
 	}
 ?>
 	</ul>
