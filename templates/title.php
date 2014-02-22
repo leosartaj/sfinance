@@ -5,5 +5,6 @@
 		<?= $title ?>
 	</title>
 	<meta name="viewport"  content="width-device-width, initial-scale=1.0" >
+	<base href="http://localhost/project1/controller/">
 	<link rel="stylesheet" type="text/css" href="../views/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../views/css/footer.css">

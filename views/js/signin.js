@@ -45,7 +45,7 @@ function check() {
 	    if (xhr.status == 200)
 	    {
 		    if(xhr.responseText === "correct")
-			    window.location = "http://localhost/project1/views/homepage.php";
+			    window.location = "http://localhost/project1/homepage";
 		    else
 		    {
 			document.getElementById("check").className = "form-group has-error";
@@ -140,7 +140,7 @@ function register() {
 	    if (xhr.status == 200)
 	    {
 		    if(xhr.responseText === "1")
-			    window.location = "http://localhost/project1/views/homepage.php";
+			    window.location = "http://localhost/project1/homepage";
 	    }
 	    else
 		alert("Error with Ajax call!");

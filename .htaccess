@@ -1,8 +1,10 @@
-#Options +FollowSymLinks
-#RewriteEngine on
-#RewriteBase /project1/
-#RewriteRule ^controller/sfinance$ controller/index.php [NC]
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /project1/
+RewriteRule ^sfinance$ controller/index.php [L]
+RewriteRule ^([a-zA-Z]+)$ views/$1.php [L]
 ErrorDocument 400 /project1/error/400.php
 ErrorDocument 401 /project1/error/401.php
 ErrorDocument 403 /project1/error/403.php
+ErrorDocument 404 /project1/error/404.php
 ErrorDocument 500 /project1/error/500.php
