@@ -44,6 +44,6 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.control-label, .register, .pass, .auth, .first, .last, .newname, .newpassword, .email {
+.register,#length, .pass, .auth, .first, .last, .newname, .newpassword, .email {
 	display: none;
 }

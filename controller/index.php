@@ -15,7 +15,7 @@ if(isset($_SESSION['username']))
 	render('header');
 ?>
 	<div class="login" id="login">
-		<form class="form-signin" role="form" onsubmit="check();return false;" method=post>
+		<form class="form-signin" role="form" method=post>
 		  <h2 class="form-signin-heading">Please Sign in</h2>
 		<div id="warning_name">
 		  <label class="control-label" id="length">Please give a valid username</label>
@@ -28,7 +28,7 @@ if(isset($_SESSION['username']))
 		<div id="check">
 			<label class="control-label auth" id="auth">username or password incorrect</label>
 		</div>
-		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		  <button class="btn btn-lg btn-primary btn-block" type="submit" id=sign_in>Sign in</button>
 		<label>Not already a user, <a id="tog_reg" >Sign Up </a>now</label>
 		</form>
 	</div>

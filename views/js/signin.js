@@ -3,19 +3,52 @@ var reg = {
 	"alpha": /^(?:[a-zA-Z]+)$/,
 	"email": /^(?:[0-9a-z._]+)(?:[\@])(?:[a-z.]+)(?:[.])(?:[a-z]+)$/
 };
+function check_log() {
+	var username = $('#username').val();
+	var password = $('#password').val();
+	var check = 0;
+	if((!reg.user.exec(username)) || (username.length < 6)) {
+		$('#warning_name').addClass("form-group has-error");
+		$('#length').fadeIn();
+		check = 1;
+	}
+	else {
+		$('#length').hide();
+		$('#warning_name').removeClass("form-group has-error");
+	}
+	if((!reg.user.exec(password)) || (password.length < 6)) {
+		$('#warning_pass').addClass("form-group has-error");
+		$('#length1').fadeIn();
+		check = 1;
+	}
+	else {
+		$('#length1').hide();
+		$('#warning_pass').removeClass("form-group has-error");
+	}
+	return check;
+};
+
+$(document).ready(function() {
+	$('#sign_in').click(function() {
+		var check = check_log();
+		if(check === 1) {
+			return false;
+		}
+	});
+	$('#tog_reg').click(function() {
+		$('#login').hide();
+		$('#register').fadeIn();
+	});
+	$('#tog_login').click(function() {
+		$('#register').hide();
+		$('#login').fadeIn();
+	});
+});
+
 /*function check() {
 	var username = $('#username').val();
 	var password = $('#password').val();
-
-}
-$('#sign_in').click(function() {
-	check();
-}*/
-
-function check() {
-	var username = $('#username').val();
-	var password = $('#password').val();
-	if((reg.user.exec(username)) === null) {
+	if(!(reg.user.exec(username))) {
 		document.getElementById("warning_name").className = "form-group has-error";
 		document.getElementById("length").style.display = "inline";
 		return false;
@@ -71,7 +104,7 @@ function check() {
 	}
 	xhr.open("POST", url, true);
 	xhr.send(null);
-}
+}*/
 function register() {
 	var first = document.getElementById("first").value;
 	var username = document.getElementById("username_new").value;
@@ -160,16 +193,6 @@ function register() {
 	xhr.send(null);
 }
 
-$(document).ready(function() {
-	$('#tog_reg').click(function() {
-		$('#login').hide();
-		$('#register').fadeIn();
-	});
-	$('#tog_login').click(function() {
-		$('#register').hide();
-		$('#login').fadeIn();
-	});
-});
 
 
 
