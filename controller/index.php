@@ -29,7 +29,7 @@ if(isset($_SESSION['username']))
 			<label class="control-label auth" id="auth">username or password incorrect</label>
 		</div>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-		<label>Not already a user, <a onclick=toggle(); >Sign Up </a>now</label>
+		<label>Not already a user, <a id="tog_reg" >Sign Up </a>now</label>
 		</form>
 	</div>
 	<div class="register" id="register">
@@ -56,7 +56,7 @@ if(isset($_SESSION['username']))
 		  <input type="password" class="form-control" id=password_new placeholder="Password">
 		</div>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-		<label>Already a user,<a onclick=toggle(); >Login</a></label>
+		<label>Already a user,<a id=tog_login >Login</a></label>
 		</form>
 	</div>
 <?php

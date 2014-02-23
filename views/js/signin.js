@@ -1,7 +1,7 @@
 function check() {
 	var user_reg = /^(?:[0-9a-zA-Z]+)$/;
-	var username = document.getElementById("username").value;
-	var password = document.getElementById("password").value;
+	var username = $('username').val();
+	var password = $('password').val();
 	if((user_reg.exec(username)) === null) {
 		document.getElementById("warning_name").className = "form-group has-error";
 		document.getElementById("length").style.display = "inline";
@@ -150,18 +150,24 @@ function register() {
 	xhr.send(null);
 }
 
-function toggle() {
-	if(document.getElementById("register").style.display == "none")
-	{
-		document.getElementById("register").style.display = "inline";
-		document.getElementById("login").style.display = "none";
-	}
-	else
-	{
-		document.getElementById("login").style.display = "inline";
-		document.getElementById("register").style.display = "none";
-	}
+$(document).ready(function() {
+	$('#tog_reg').click(function() {
+		$('#login').hide();
+		$('#register').fadeIn();
+	});
+	$('#tog_login').click(function() {
+		$('#register').hide();
+		$('#login').fadeIn();
+	});
+});
 
-}
+
+
+
+
+
+
+
+
 
 
