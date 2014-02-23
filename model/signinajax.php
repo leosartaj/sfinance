@@ -13,10 +13,15 @@ session_start();
 	{
 		if(isset($user1['username']))
 		{
-			print("correct");
+			$data['value'] = "correct";
+			print(json_encode($data));
 		}
 			$_SESSION['username'] = $_GET['username'];
 			$_SESSION['user_id'] = $user1['user_id'];
+	}
+	else {
+		$data['value'] = "no";
+		print(json_encode($data));
 	}
 	$dbh = null;
 ?>

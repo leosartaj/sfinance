@@ -15,7 +15,7 @@ if(isset($_SESSION['username']))
 	render('header');
 ?>
 	<div class="login" id="login">
-		<form class="form-signin" role="form" method=post>
+		<form class="form-signin" role="form" id=form_log method=get>
 		  <h2 class="form-signin-heading">Please Sign in</h2>
 		<div id="warning_name">
 		  <label class="control-label" id="length">Please give a valid username</label>

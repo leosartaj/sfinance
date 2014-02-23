@@ -3,9 +3,8 @@ var reg = {
 	"alpha": /^(?:[a-zA-Z]+)$/,
 	"email": /^(?:[0-9a-z._]+)(?:[\@])(?:[a-z.]+)(?:[.])(?:[a-z]+)$/
 };
-function check_log() {
-	var username = $('#username').val();
-	var password = $('#password').val();
+
+function check_log(username, password) {
 	var check = 0;
 	if((!reg.user.exec(username)) || (username.length < 6)) {
 		$('#warning_name').addClass("form-group has-error");
@@ -29,12 +28,33 @@ function check_log() {
 };
 
 $(document).ready(function() {
-	$('#sign_in').click(function() {
-		var check = check_log();
+	$('#form_log').submit(function() {
+		var username = $('#username').val();
+		var password = $('#password').val();
+		var check = check_log(username, password);
 		if(check === 1) {
 			return false;
 		}
-	});
+		$.ajax({
+			url: "../model/signinajax.php",
+			data: {
+				'username': username,
+				'password': password
+			},
+			success: function(data) {
+				data = JSON.parse(data);
+				if(data.value === "correct") {
+
+					window.location = "../homepage";
+				}
+				else {
+					$('#check').addClass("form-group has-error");
+					$('#auth').fadeIn();
+				}
+			}
+			});
+			return false;
+		});
 	$('#tog_reg').click(function() {
 		$('#login').hide();
 		$('#register').fadeIn();
@@ -45,66 +65,6 @@ $(document).ready(function() {
 	});
 });
 
-/*function check() {
-	var username = $('#username').val();
-	var password = $('#password').val();
-	if(!(reg.user.exec(username))) {
-		document.getElementById("warning_name").className = "form-group has-error";
-		document.getElementById("length").style.display = "inline";
-		return false;
-	}
-	else {
-		document.getElementById("warning_name").className = "";
-		document.getElementById("length").style.display = "none";
-	}
-
-	if((reg.user.exec(password)) === null) {
-		document.getElementById("warning_pass").className = "form-group has-error";
-		document.getElementById("length1").style.display = "inline";
-		return false;
-	}
-	else {
-		document.getElementById("warning_pass").className = "";
-		document.getElementById("length1").style.display = "none";
-	}
-
-	var xhr = new XMLHttpRequest();
-
-	if (xhr == null)
-	{
-	 alert("Ajax not supported by your browser!");
-	 return;
-	}
-
-	var username = document.getElementById("username").value;
-	var password = document.getElementById("password").value;
-
-	// construct URL
-	var url = "http://localhost/sfinance/model/signinajax.php?username=" + username + "&" + "password=" + password;
-
-	xhr.onreadystatechange =
-	function()
-	{
-	// only handle loaded requests
-	if (xhr.readyState == 4)
-	{
-	    if (xhr.status == 200)
-	    {
-		    if(xhr.responseText === "correct")
-			    window.location = "http://localhost/sfinance/homepage";
-		    else
-		    {
-			document.getElementById("check").className = "form-group has-error";
-			document.getElementById("auth").style.display = "inline";
-		    }
-	    }
-	    else
-		alert("Error with Ajax call!");
-	}
-	}
-	xhr.open("POST", url, true);
-	xhr.send(null);
-}*/
 function register() {
 	var first = document.getElementById("first").value;
 	var username = document.getElementById("username_new").value;
@@ -192,15 +152,3 @@ function register() {
 	xhr.open("POST", url, true);
 	xhr.send(null);
 }
-
-
-
-
-
-
-
-
-
-
-
-
