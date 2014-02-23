@@ -26,6 +26,7 @@ session_start();
 	);
 	$_SESSION['username'] = $_GET['username'];
 	$_SESSION['user_id'] = $user1['user_id'];
-	print("1");
+	$data['value'] = "correct";
+	print(json_encode($data));
 	$dbh = null;
 ?>

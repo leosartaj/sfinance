@@ -33,7 +33,7 @@ if(isset($_SESSION['username']))
 		</form>
 	</div>
 	<div class="register" id="register">
-		<form class="form-signin" role="form" onsubmit="register(); return false;" method=POST>
+		<form class="form-signin" role="form" id=form_reg method=get>
 		  <h2 class="form-signin-heading">Register</h2>
 		<div id="warning_first">
 		  <label class="control-label first" id="firstl">Please fill a valid name</label>
