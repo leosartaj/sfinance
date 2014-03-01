@@ -19,7 +19,8 @@ session_start();
     }
     else
     {
-	print("Error internet");
+	$data['info'] = "Error Internet";
+	print(json_encode($data));
 	exit;
     }
 	$connect = 'mysql:host=localhost;dbname=sfinance';
@@ -31,7 +32,8 @@ session_start();
 	$balance = $user1['balance'] - ($_GET['quantity'] * $price);
 	if($balance < 0)
 	{
-		print("funds");
+		$data['info'] = "funds";
+		print(json_encode($data));
 		exit;
 	}
 	$sql = "UPDATE balance SET balance=:balance WHERE user_id=:user_id";
@@ -54,7 +56,6 @@ session_start();
 			':spent' => $user1['spent'],
 			':user_id' => $_SESSION['user_id'])
 		);
-		print("CHECK");
 	}
 	else
 	{
@@ -67,9 +68,8 @@ session_start();
 			':spent' => $spent,
 			':quantity' => $_GET['quantity'])
 		);
-		print("CHECKED");
 	}
-	print_r($_SESSION);
-	print($balance);
+	$data['info'] = "ok";
+	print(json_encode($data));
 	$dbh = null;
 ?>

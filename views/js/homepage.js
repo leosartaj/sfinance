@@ -1,125 +1,108 @@
 var global = {};
-function getquote() {
-	var sym_reg = /^(?:[a-zA-Z.]+)$/;
-	var symbol = document.getElementById("symbol").value;
-	document.getElementById("buy2").style.display = "none";
-	document.getElementById("buy").style.display = "none";
-	document.getElementById("price").className = "text-muted";
-	document.getElementById("funds").style.display= "none";
 
-	var xhr = new XMLHttpRequest();
+var reg = {
+	"sym": /^(?:[a-zA-Z.]+)$/,
+	"num": /^(?:[0-9]+)$/
+};
 
-	if (xhr == null)
-	{
-	 alert("Ajax not supported by your browser!");
-	 return;
+function check_s(symbol) {
+	if(!reg.sym.exec(symbol)) {
+		$('#price').html("Plese fill a vald symbol");
+		return 1;
 	}
-	if((sym_reg.exec(symbol)) === null) {
-			document.getElementById("price").innerHTML = "Pease fill a valid symbol";
-		return false;
-	}
-	 document.getElementById("load").style.display = "block";
-	 global.quote_symbol = document.getElementById("symbol").value;
-	 global.quote_symbol = global.quote_symbol.toUpperCase();
+};
 
-	// construct URL
-	var url = "http://localhost/sfinance/model/quoteajax.php?symbol=" + global.quote_symbol;
-
-	xhr.onreadystatechange =
-	function()
-	{
-	// only handle loaded requests
-	if (xhr.readyState == 4)
-	{
-	    if (xhr.status == 200)
-	    {
-		    var quote = eval("(" + xhr.responseText + ")");
-			if(quote.price !== "Error") {
-				document.getElementById("load").style.display = "none";
-				if(quote.price != 0) {
-			    document.getElementById("price").innerHTML = global.quote_symbol + ": " + quote.price + "$ " + "<button id=button class=\"btn btn-primary btn-xs\" onclick=\"buy();return false;\"></button>";
-			    document.getElementById("button").style.display = "inline";
-			    document.getElementById("button").innerHTML = "Buy Share";
+$(document).ready(function() {
+	$('#form_quote').submit(function() {
+		global.quote_symbol = $('#symbol').val();
+		$('#buy2').hide();
+		$('#buy').hide();
+		$('#funds').hide();
+		$('#error1').hide();
+		$('#button').hide();
+		$('#load').fadeIn();
+		var check = check_s(global.quote_symbol);
+		if(check === 1) {
+			return false;
+		}
+		global.quote_symbol = global.quote_symbol.toUpperCase();
+		$.ajax({
+			url: "../model/quoteajax.php",
+			data: {
+				'symbol': global.quote_symbol
+			},
+			success: function(data) {
+				if(data.price !== "Error") {
+					$('#load').hide();
+					if(data.price != 0) {
+					    var write = global.quote_symbol + ": " + data.price + "$ ";
+					    $('#price').prepend(write);
+					    $('#button').fadeIn();
+					}
+					else {
+						$('#price').html("Incorrect Symbol");
+					}
 				}
 				else {
-					document.getElementById("price").innerHTML = "Incorrect Symbol";
+					$('#load').hide();
+					//$('#price').prepend("error internet");
+					    var write = global.quote_symbol + ": " + data.price + "$ ";
+					    $('#price').html(write);
+					    $('#button').fadeIn();
 				}
 			}
-			else {
-				document.getElementById("price").innerHTML = "error internet";
-				document.getElementById("load").style.display = "none";
-			}
-	    }
-	    else
-		alert("Error with Ajax call!");
-	}
-	}
-	xhr.open("POST", url, true);
-	xhr.send(null);
-}
-
-function buy() {
-	if(document.getElementById("button").style.display == "inline") {
-		document.getElementById("buy").style.display = "inline";
-		document.getElementById("button").style.display = "none";
-		document.getElementById("price").className = "text-muted";
-		document.getElementById("buy2").style.display = "inline";
-		document.getElementById("funds").style.display= "none";
-	}
-}
-	
-function buy_share() {
-	var num_reg = /^(?:[0-9]+)$/;
-	var quantity = document.getElementById("quantity").value;
-	var xhr = new XMLHttpRequest();
-
-	if (xhr == null)
-	{
-	 alert("Ajax not supported by your browser!");
-	 return;
-	}
-	if((num_reg.exec(quantity)) === null)
-	{
-		document.getElementById("warning_q").className = "form-group has-error";
-		document.getElementById("length").style.display = "inline";
+		});
 		return false;
-	}
-	else {
-		document.getElementById("warning_q").className = "";
-		document.getElementById("length").style.display = "none";
-	}	
-	document.getElementById("load1").style.display = "block";
-	document.getElementById("funds").style.display= "none";
-	var quantity = document.getElementById("quantity").value;
-	// construct URL
-	var url = "http://localhost/sfinance/model/buyajax.php?symbol=" + global.quote_symbol + "&quantity=" + quantity;
-	xhr.onreadystatechange =
-	function()
-	{
-	// only handle loaded requests
-	if (xhr.readyState == 4)
-	{
-	    if (xhr.status == 200)
-	    {
-		if(xhr.responseText !== "funds")
+	});
+	$('#button').click(function() {
+		$('#buy').fadeIn();
+		$('#button').hide();
+		$('#buy2').fadeIn();
+		$('#funds').hide();
+		$('#error1').hide();
+		return false;
+	});
+
+	$('#buy2').click(function () {
+		var quantity = $('#quantity').val();
+		if(!reg.num.exec(quantity))
 		{
-			document.getElementById("load1").style.display = "none";
-			document.getElementById("buy2").style.display = "none";
-			document.getElementById("buy").style.display = "none";
-			document.getElementById("button").style.display = "inline";
-			document.getElementById("price").className = "text-success";
-			document.getElementById("funds").style.display= "none";
+			$('#warning_q').addClass("form-group has-error");
+			$('#length').fadeIn();
+			return false;
 		}
 		else {
-			document.getElementById("load1").style.display = "none";
-			document.getElementById("funds").style.display= "inline";
-		}
-			
-	    }
-	    else
-		alert("Error with Ajax call!");
-	}
-	}
-	xhr.open("POST", url, true);
-	xhr.send(null);
-}
+			$('#warning_q').removeClass("form-group has-error");
+			$('#length').hide();
+		}	
+		$('#load1').fadeIn();
+		$('#funds').hide();
+		$('#error1').hide();
+		$.ajax({
+			url: "../model/buyajax.php",
+			data: {
+				'symbol': global.quote_symbol,
+				'quantity': quantity
+			},
+			success: function(data) {
+				if(data.info === "ok") {
+					$('#load1').hide();
+					$('#buy2').hide();
+					$('#buy').hide();
+					$('#funds').hide();
+					$('#error1').hide();
+					$('#button').fadeIn();
+				}
+				else if(data.info === "funds") {
+					$('#load1').hide();
+					$('#funds').fadeIn();
+				}
+				else {
+					$('#load1').hide();
+					$('#error1').fadeIn();
+				}
+			}
+		});
+		return false;
+	});
+});
