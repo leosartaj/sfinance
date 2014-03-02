@@ -10,18 +10,26 @@
 	);
 	$cxContext = stream_context_create($aContext);
     // try to get quote
-	$handle = @fopen("http://download.finance.yahoo.com/d/quotes.csv?s={$_GET['symbol']}&f=e1l1", "r", false, $cxContext);
-    if ($handle !== FALSE)
-    {
-        $data = fgetcsv($handle);
-	$price['price'] = $data[1];
-	print(json_encode($price));
-        fclose($handle);
-    }
-    else
+	for($i = 1; ;$i++)
 	{
-		$price['price'] = "Error";
-		print(json_encode($price));
+		$symbol = 'symbol'.$i;
+		if(!isset($_GET[$symbol]))
+		{
+			break;
+		}
+		$handle = @fopen("http://download.finance.yahoo.com/d/quotes.csv?s={$_GET[$symbol]}&f=e1l1", "r", false, $cxContext);
+	    if ($handle !== FALSE)
+	    {
+		$data = fgetcsv($handle);
+		$data1 = 'price'.$i;
+		$price[$data1] = $data[1];
+		fclose($handle);
+	    }
+	    else
+		{
+			$data1 = 'price'.$i;
+			$price[$data1] = "Error";
+		}
 	}
-
+	print(json_encode($price));
 ?>

@@ -25,7 +25,7 @@ function get_price() {
 	}
 	var obj = sym(i);
 	$.ajax({
-		url: "../model/quoteajax_m.php",
+		url: "../model/quoteajax.php",
 		data: obj 
 		,
 		success: function(data) {

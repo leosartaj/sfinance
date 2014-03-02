@@ -29,13 +29,13 @@ $(document).ready(function() {
 		$.ajax({
 			url: "../model/quoteajax.php",
 			data: {
-				'symbol': global.quote_symbol
+				'symbol1': global.quote_symbol
 			},
 			success: function(data) {
-				if(data.price !== "Error") {
+				if(data.price1 !== "Error") {
 					$('#load').hide();
-					if(data.price != 0) {
-					    var write = global.quote_symbol + ": " + data.price + "$ ";
+					if(data.price1 != 0) {
+					    var write = global.quote_symbol + ": " + data.price1 + "$ ";
 					    $('#price').prepend(write);
 					    $('#button').fadeIn();
 					}
