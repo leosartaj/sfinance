@@ -24,7 +24,7 @@ if(!isset($_SESSION['username']))
 	$_SESSION['count'] = $count;
 ?>
 <div class="table-responsive">
-<table class="table table-condensed table-hover table-bordered dashboard"">
+<table class="table table-condensed table-hover table-bordered dashboard">
 	<caption class=caption1><h3>Shares</h3></caption>
 	<thead>
 		<td>Symbol</td>
@@ -41,7 +41,7 @@ if(!isset($_SESSION['username']))
 		echo("<td id=\"q$i\">{$user1[$i]['quantity']}</td>");
 		$spent = ($user1[$i]['spent']/$user1[$i]['quantity']);
 		echo("<td id=\"spent$i\" name=spent$i>");printf("%.2f",$spent);echo("</td>");
-		echo("<td id=\"price$i\" name=price$i onclick=\"get_price($i);\"><a>Click</a></td>");
+		echo("<td id=\"price$i\" name=price$i></td>");
 		echo("<td id=\"net$i\" name=net$i></td>");
 		echo("<td class=\"sell_quantity\" id=\"quantity$i\"><input id=\"quantity1$i\" type=text placeholder=Quantity></td>");
 		echo("<td id=\"sell$i\" onclick=\"quantity_display($i);\" name=sell class=\"active\" ><a>Sell</a></td>");

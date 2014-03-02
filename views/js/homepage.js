@@ -45,10 +45,7 @@ $(document).ready(function() {
 				}
 				else {
 					$('#load').hide();
-					//$('#price').prepend("error internet");
-					    var write = global.quote_symbol + ": " + data.price + "$ ";
-					    $('#price').html(write);
-					    $('#button').fadeIn();
+					$('#price').prepend("error internet");
 				}
 			}
 		});
