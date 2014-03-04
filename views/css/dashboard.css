@@ -1,7 +1,7 @@
 .caption1 {
 	margin-top: 100px;
 }
-.sell_quantity {
+.sell_quantity, .sell, #qt, #sell_cn, #int {
 	display: none;
 }
 .dashboard {
@@ -10,5 +10,10 @@
 	max-width: 400px;
 }
 .bal {
-	text-align:center;
+	text-align: center;
+}
+
+.bal1 {
+	display: none;
+	text-align: center;
 }

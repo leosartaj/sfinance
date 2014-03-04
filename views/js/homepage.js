@@ -36,7 +36,7 @@ $(document).ready(function() {
 					$('#load').hide();
 					if(data.price1 != 0) {
 					    var write = global.quote_symbol + ": " + data.price1 + "$ ";
-					    $('#price').prepend(write);
+					    $('#price').html(write);
 					    $('#button').fadeIn();
 					}
 					else {
@@ -45,7 +45,7 @@ $(document).ready(function() {
 				}
 				else {
 					$('#load').hide();
-					$('#price').prepend("error internet");
+					$('#price').html("error internet");
 				}
 			}
 		});

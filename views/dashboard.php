@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['username']))
 {
-	header("location: http://localhost/project1/controller/index.php");
+	header("location: ../sfinance/main");
 	exit;
 }
 	require_once("../includes/helper.php");
@@ -32,6 +32,7 @@ if(!isset($_SESSION['username']))
 		<td>Avg. Price</td>
 		<td>Present Price</td>
 		<td>Net</td>
+		<td id=qt>Quantity</td>
 	</thead>
 <?php
 	for($i = 0; $i < $count; $i++)
@@ -43,14 +44,16 @@ if(!isset($_SESSION['username']))
 		echo("<td id=\"spent$i\" name=spent$i>");printf("%.2f",$spent);echo("</td>");
 		echo("<td id=\"price$i\" name=price$i></td>");
 		echo("<td id=\"net$i\" name=net$i></td>");
-		echo("<td class=\"sell_quantity\" id=\"quantity$i\"><input id=\"quantity1$i\" type=text placeholder=Quantity></td>");
-		echo("<td id=\"sell$i\" onclick=\"quantity_display($i);\" name=sell class=\"active\" ><a>Sell</a></td>");
+		echo("<td class=\"sell_quantity\" id=\"quantity$i\"><input id=\"quantity1$i\" type=text value=0></td>");
 		echo("</tr>");
 	}
 ?>
 </table>
 </div>
+	<p><span class="help-block bal1" id=bal1><strong>Sorry, Unable to reach server, try again :P</strong></span></p>
+	<p><span class="help-block bal"><strong><a id=sell_cn>Sell</a></strong></span></p>
 	<p><span class="help-block bal"><strong>Available Balance: </strong><span id="avail-balance"><?= $user2['balance'] ?></span>$</span></p>
+	<p><span class="help-block bal"><strong><a id=sell_sh>Sell Shares</a></strong></span></p>
 <?php
 	render('footer');
 ?>

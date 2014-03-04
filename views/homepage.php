@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['username']))
 {
-	header("location: http://localhost/project1/controller/index.php");
+	header("location: ../sfinance/main");
 	exit;
 }
 	require_once('../includes/helper.php');
