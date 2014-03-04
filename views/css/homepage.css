@@ -3,7 +3,7 @@ body {
 	padding-bottom: 40px;
 }
 .form-signin {
-  max-width: 330px;
+  max-width: 380px;
   padding: 15px;
   margin: 0 auto;
 }
@@ -31,7 +31,7 @@ body {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-#buy, #buy2, #button, .load, #length, #funds, #error1 {
+#buy, #buy2, #button, .load, #length, #funds, #error1, .img {
 	display: none;
 }
 .load {

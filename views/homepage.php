@@ -15,7 +15,7 @@ if(!isset($_SESSION['username']))
 ?>
 	<div class="container">
 	<form method=POST class=form-signin id=form_quote>
-		<img src="../views/gif/$Finance.gif" class="form-signin-heading">
+		<img src="../views/gif/$Finance.gif" class="form-signin-heading img">
 		<input type="text" class=form-control name=quote placeholder="Get Quote" id=symbol>
 		<br>
 		<button class="btn btn-lg btn-primary btn-block" type=submit>Get Quote</button>

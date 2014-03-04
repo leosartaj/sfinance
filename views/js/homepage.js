@@ -13,6 +13,7 @@ function check_s(symbol) {
 };
 
 $(document).ready(function() {
+	$('.img').fadeIn("slow");
 	$('#form_quote').submit(function() {
 		global.quote_symbol = $('#symbol').val();
 		$('#buy2').hide();
