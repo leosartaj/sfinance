@@ -54,6 +54,7 @@ if(!isset($_SESSION['username']))
 	<p><span class="help-block bal"><strong><a id=sell_cn>Sell</a></strong></span></p>
 	<p><span class="help-block bal"><strong>Available Balance: </strong><span id="avail-balance"><?= $user2['balance'] ?></span>$</span></p>
 	<p><span class="help-block bal"><strong><a id=sell_sh>Sell Shares</a></strong></span></p>
+	<p><img class=load id=load src="../views/gif/load.gif"></p>
 <?php
 	render('footer');
 ?>

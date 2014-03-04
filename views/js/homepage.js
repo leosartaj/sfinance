@@ -21,7 +21,7 @@ $(document).ready(function() {
 		$('#funds').hide();
 		$('#error1').hide();
 		$('#button').hide();
-		$('#load').fadeIn();
+		$('#load').fadeIn().css("display", "block");
 		var check = check_s(global.quote_symbol);
 		if(check === 1) {
 			return false;
@@ -73,7 +73,7 @@ $(document).ready(function() {
 			$('#warning_q').removeClass("form-group has-error");
 			$('#length').hide();
 		}	
-		$('#load1').fadeIn();
+		$('#load1').fadeIn().css("display", "block");
 		$('#funds').hide();
 		$('#error1').hide();
 		$.ajax({

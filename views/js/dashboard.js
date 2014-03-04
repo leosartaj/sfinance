@@ -18,6 +18,7 @@ $(document).ready(function() {
 		$('#sell_sh').hide();
 		$('#sell_cn').slideDown();
 		$('#sell_cn').click(function() {
+			$('#load').slideDown().css("display", "block");
 			for(j = i - 1; j > -1; j--) {
 				var quantity = $('#quantity1' + j).val();
 				if(!reg.num.exec(quantity)) {
@@ -30,6 +31,7 @@ $(document).ready(function() {
 				url: "../model/dashboardajax.php",
 				data: obj, 
 				success: function(data) {
+					$('#load').hide();
 					data = JSON.parse(data);
 					for(price in data) {
 						if(data[price] === "Error") {
@@ -70,6 +72,7 @@ function qt(i) {
 }
 
 function get_price() {
+	$('#load').slideDown().css("display", "block");
 	var i;
 	for(i = 0; ;i++) {
 		if($('#price' + i).length === 0) {
@@ -81,6 +84,7 @@ function get_price() {
 		url: "../model/quoteajax.php",
 		data: obj,
 		success: function(data) {
+			$('#load').fadeOut();
 			for(j = i - 1;j >= 0; j--) {
 				var price = 'price' + (j + 1);
 				$('#price' + j).html(data[price]);
