@@ -1,5 +1,6 @@
 <?php
 session_start();
+//applying logout
 if(isset($_SESSION['username']))
 	{
 		session_destroy();
@@ -7,6 +8,7 @@ if(isset($_SESSION['username']))
 		exit;
 	}
 	require_once('../includes/helper.php');
+//templates and links
 	render('title', array('title' => '$Finance'));
 ?>
 	<link rel="stylesheet" type="text/css" href="../views/css/signin.css">
@@ -14,6 +16,7 @@ if(isset($_SESSION['username']))
 <?php
 	render('header');
 ?>
+<!-- Login Form -->
 	<div class="login" id="login">
 		<form class="form-signin" role="form" id=form_log method=get>
 		  <h2 class="form-signin-heading">Please Sign in</h2>
@@ -32,6 +35,7 @@ if(isset($_SESSION['username']))
 		<label>Not already a user, <a id="tog_reg" >Sign Up </a>now</label>
 		</form>
 	</div>
+<!--  Register Form -->
 	<div class="register" id="register">
 		<form class="form-signin" role="form" id=form_reg method=get>
 		  <h2 class="form-signin-heading">Register</h2>

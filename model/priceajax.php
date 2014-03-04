@@ -1,9 +1,9 @@
 <?php
 session_start();
-    	$auth = base64_encode('069.5035:ferrari501');
+    	$auth = base64_encode('pcpradhan:pradhan');
 	$aContext = array(
 	    'http' => array(
-		'proxy' => 'tcp://10.1.1.16:80',
+		'proxy' => 'tcp://10.1.1.18:80',
 		'request_fulluri' => true,
 		'header' => "Proxy-Authorization: Basic $auth",
 	    ),

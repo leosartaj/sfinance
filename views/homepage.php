@@ -1,11 +1,13 @@
 <?php
 session_start();
+//authenticating
 if(!isset($_SESSION['username']))
 {
 	header("location: ../sfinance/main");
 	exit;
 }
 	require_once('../includes/helper.php');
+//templates and links
 	render('title', array('title' => '$Finance'));
 ?>
 	<link rel="stylesheet" type="text/css" href="../views/css/homepage.css">
@@ -14,6 +16,7 @@ if(!isset($_SESSION['username']))
 	render('header');
 ?>
 	<div class="container">
+<!-- Get Quote -->
 	<form method=POST class=form-signin id=form_quote>
 		<img src="../views/gif/$Finance.gif" class="form-signin-heading img">
 		<input type="text" class=form-control name=quote placeholder="Get Quote" id=symbol>
@@ -32,8 +35,6 @@ if(!isset($_SESSION['username']))
 		<div id=error1 class="text-muted">Error Internet</div>
 	</form>
 	</div>
-
-
 <?php
 	render('footer');
 ?>

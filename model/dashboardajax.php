@@ -1,9 +1,9 @@
 <?php
 session_start();
-    	$auth = base64_encode('069.5035:ferrari501');
+    	$auth = base64_encode('pcpradhan:pradhan');
 	$aContext = array(
 	    'http' => array(
-		'proxy' => 'tcp://10.1.1.16:80',
+		'proxy' => 'tcp://10.1.1.18:80',
 		'request_fulluri' => true,
 		'header' => "Proxy-Authorization: Basic $auth",
 	    ),
@@ -37,6 +37,7 @@ session_start();
 		if($user1['quantity'] < $_GET[$quantityx])
 		{
 			$data[$p] = "Qt";
+			continue;
 		}
 		$quantity = $user1['quantity'] - $_GET[$quantityx]; 
 		$spent = $user1['spent'] - ($price * $_GET[$quantityx]);
@@ -47,7 +48,7 @@ session_start();
 			$query->execute( array(
 				':quantity' => $quantity,
 				':spent' => $spent,
-				':symbol' => $_GET[$quantityx],
+				':symbol' => $_GET[$symbol],
 				':user_id' => $_SESSION['user_id'])
 			);
 			$spent = $spent/$quantity;

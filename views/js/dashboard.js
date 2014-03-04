@@ -42,6 +42,7 @@ $(document).ready(function() {
 					}
 					if(check !== 1) {
 						window.location = "../dashboard";
+						return false;
 					}
 				}
 			});

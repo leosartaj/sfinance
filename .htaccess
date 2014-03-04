@@ -1,8 +1,10 @@
+#pretty urls
 Options +FollowSymLinks
 RewriteEngine on
 RewriteBase /sfinance/
 RewriteRule ^main$ controller/index.php [L]
 RewriteRule ^([a-zA-Z]+)$ views/$1.php [L]
+#custom error templates
 ErrorDocument 400 /sfinance/error/400.php
 ErrorDocument 401 /sfinance/error/401.php
 ErrorDocument 403 /sfinance/error/403.php

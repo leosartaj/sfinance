@@ -83,6 +83,7 @@ $(document).ready(function() {
 				'quantity': quantity
 			},
 			success: function(data) {
+				data = JSON.parse(data);
 				if(data.info === "ok") {
 					$('#load1').hide();
 					$('#buy2').hide();
