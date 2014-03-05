@@ -27,7 +27,7 @@ Needs The Following tables
 
 3.balance
 	user_id(int, primary key)
-	balance(double, index, set default intitial amount)
+	balance(double, set default intitial amount)
 
 4.shares
 	query_num(bigint, primary key, AI)
