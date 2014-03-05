@@ -3,10 +3,7 @@ session_start();
 	//include for password hashing
 	require('../includes/PasswordHash.php');
 	//connecting db
-	$connect = 'mysql:host=localhost;dbname=sfinance';
-	$user = 'root';
-	$pass = '13123016';
-	$dbh = new PDO($connect, $user, $pass);
+	require_once('../includes/sql.php');
 	$query = $dbh->query("SELECT * FROM users where username='{$_GET['username']}';");
 	$user1 = $query->fetch(PDO::FETCH_ASSOC);
 	$hasher = new PasswordHash(8,false);

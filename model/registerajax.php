@@ -7,10 +7,7 @@ session_start();
 	//one-way hashing
 	$_GET['password'] = $hasher->HashPassword($password);
 	//connecting db
-	$connect = 'mysql:host=localhost;dbname=sfinance';
-	$user = 'root';
-	$pass = '13123016';
-	$dbh = new PDO($connect, $user, $pass);
+	require_once('../includes/sql.php');
 	$sql = "INSERT INTO info_users (first,last,email) VALUES (:first,:last,:email);";
 	$query = $dbh->prepare($sql);
 	$query->execute( array(

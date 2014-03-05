@@ -50,6 +50,7 @@ $(document).ready(function() {
 						window.location = "../dashboard";
 						return false;
 					}
+					check = 0;
 				}
 			});
 		});

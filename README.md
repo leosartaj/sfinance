@@ -1,15 +1,42 @@
-# README
+README
+===============
 
-!! Incomplete, Under active development
+Sfinance is a virtual share market that lets users buy and sell shares.
 
-Only for local development, some links are hard-coded to localhost
+Required
+---------------
+
+Installed and running web server(eg. apache) 
+
+MySQL should be supported
 
 Installation
+---------------
 
-All the file should be stored in directory named sfinance
+1. cd (path of web directory)
 
-Run setup.sh, give your MySQL username and password
+2. git clone https://github.com/leosartaj/sfinance.git
 
-Script sets up a database named sfinance
+3. Name the parent directory 'sfinance'
 
-Go to localhost/sfinance/main to access.
+4. Run setup.sh, give your MySQL username and password
+
+5. Script sets up a database named sfinance
+
+MySQL Setting
+---------------------------------------
+
+1. Go to sfinance/includes/sql.php
+
+2. Edit the Mysql username and password
+
+
+Proxy Setting
+---------------------------------------
+
+1. If you use a proxy server, edit the file sfinance/includes/proxy.php with your proxy settings
+
+2. If you do not use a proxy server, go to sfinance/includes and remove proxy.php
+
+Go to localhost/sfinance/main to access
+---------------------------------------

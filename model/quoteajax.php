@@ -1,15 +1,9 @@
 <?php
 	header("Content-type: application/json");
-	//proxy settings
-    	$auth = base64_encode('pcpradhan:pradhan');
-	$aContext = array(
-	    'http' => array(
-		'proxy' => 'tcp://10.1.1.18:80',
-		'request_fulluri' => true,
-		'header' => "Proxy-Authorization: Basic $auth",
-	    ),
-	);
-	$cxContext = stream_context_create($aContext);
+	$path = "../includes/proxy.php";
+	if(file_exists($path)) {
+		require_once($path);
+	}
 	//loop for query
 	for($i = 1; ;$i++)
 	{

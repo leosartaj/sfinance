@@ -1,15 +1,9 @@
 <?php
 session_start();
-	//proxy settings
-    	$auth = base64_encode('pcpradhan:pradhan');
-	$aContext = array(
-	    'http' => array(
-		'proxy' => 'tcp://10.1.1.18:80',
-		'request_fulluri' => true,
-		'header' => "Proxy-Authorization: Basic $auth",
-	    ),
-	);
-	$cxContext = stream_context_create($aContext);
+	$path = "../includes/proxy.php";
+	if(file_exists($path)) {
+		require_once($path);
+	}
 	//loop for query
 	for($i = 1; ; $i++) 
 	{
@@ -34,10 +28,7 @@ session_start();
 			continue;
 		}
 		//connecting db
-		$connect = 'mysql:host=localhost;dbname=sfinance';
-		$user = 'root';
-		$pass = '13123016';
-		$dbh = new PDO($connect, $user, $pass);
+		require('../includes/sql.php');
 		$query = $dbh->query("SELECT quantity,spent FROM shares WHERE user_id='{$_SESSION['user_id']}' AND symbol='{$_GET[$symbol]}';");
 		$user1 = $query->fetch(PDO::FETCH_ASSOC);
 		if($user1['quantity'] < $_GET[$quantityx])

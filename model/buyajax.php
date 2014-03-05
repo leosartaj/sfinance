@@ -1,16 +1,9 @@
 <?php
 session_start();
-//proxy settings
-    	$auth = base64_encode('pcpradhan:pradhan');
-	$aContext = array(
-	    'http' => array(
-		'proxy' => 'tcp://10.1.1.18:80',
-		'request_fulluri' => true,
-		'header' => "Proxy-Authorization: Basic $auth",
-	    ),
-	);
-	$cxContext = stream_context_create($aContext);
-	//open csv file
+	$path = "../includes/proxy.php";
+	if(file_exists($path)) {
+		require_once($path);
+	}
 	$handle = @fopen("http://download.finance.yahoo.com/d/quotes.csv?s={$_GET['symbol']}&f=e1l1", "r", false, $cxContext);
 	if ($handle !== FALSE)
 	{
@@ -25,10 +18,7 @@ session_start();
 		exit;
 	}
 	//connect db
-	$connect = 'mysql:host=localhost;dbname=sfinance';
-	$user = 'root';
-	$pass = '13123016';
-	$dbh = new PDO($connect, $user, $pass);
+	require_once('../includes/sql.php');
 	$query = $dbh->query("SELECT * FROM balance where user_id='{$_SESSION['user_id']}';");
 	$user1 = $query->fetch(PDO::FETCH_ASSOC);
 	$balance = $user1['balance'] - ($_GET['quantity'] * $price);

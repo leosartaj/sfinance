@@ -15,10 +15,7 @@ if(!isset($_SESSION['username']))
 <?php
 	render('header');
 //db selection
-	$connect = 'mysql:host=localhost;dbname=sfinance';
-	$user = 'root';
-	$pass = '13123016';
-	$dbh = new PDO($connect, $user, $pass);
+	require_once('../includes/sql.php');
 //querying for shares bought
 	$query = $dbh->query("SELECT symbol,quantity,spent FROM shares where user_id='{$_SESSION['user_id']}'");
 	$query2 = $dbh->query("SELECT balance FROM balance where user_id='{$_SESSION['user_id']}'");
