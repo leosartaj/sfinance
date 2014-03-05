@@ -58,7 +58,7 @@ if(!isset($_SESSION['username']))
 <!-- additional info and error messages -->
 	<p><span class="help-block bal1" id=bal1><strong>Sorry, Unable to reach server, try again :P</strong></span></p>
 	<p><span class="help-block bal"><strong><a id=sell_cn>Sell</a></strong></span></p>
-	<p><span class="help-block bal"><strong>Available Balance: </strong><span id="avail-balance"><?= $user2['balance'] ?></span>$</span></p>
+	<p><span class="help-block bal"><strong>Available Balance: </strong><span id="avail-balance"><?= round($user2['balance'], 2) ?></span>$</span></p>
 	<p><span class="help-block bal"><strong><a id=sell_sh>Sell Shares</a></strong></span></p>
 	<p><img class=load id=load src="../views/gif/load.gif"></p>
 <?php

@@ -1,9 +1,12 @@
 <?php
 session_start();
+	//include for password hashing
 	require_once('../includes/PasswordHash.php');
 	$hasher = new PasswordHash(8,false);
 	$password = $_GET['password'];
+	//one-way hashing
 	$_GET['password'] = $hasher->HashPassword($password);
+	//connecting db
 	$connect = 'mysql:host=localhost;dbname=sfinance';
 	$user = 'root';
 	$pass = '13123016';
@@ -27,6 +30,7 @@ session_start();
 	$_SESSION['username'] = $_GET['username'];
 	$_SESSION['user_id'] = $user1['user_id'];
 	$data['value'] = "correct";
+	//output json
 	print(json_encode($data));
 	$dbh = null;
 ?>

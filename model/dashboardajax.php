@@ -1,5 +1,6 @@
 <?php
 session_start();
+	//proxy settings
     	$auth = base64_encode('pcpradhan:pradhan');
 	$aContext = array(
 	    'http' => array(
@@ -9,25 +10,30 @@ session_start();
 	    ),
 	);
 	$cxContext = stream_context_create($aContext);
+	//loop for query
 	for($i = 1; ; $i++) 
 	{
 		$symbol = 'symbol'.$i;
 		$quantityx = 'quantity'.$i;
 		$p = 'price'.$i;
 		if(!isset($_GET[$symbol]))
+		{
 			break;
+		}
+		//opening csv file
 		$handle = @fopen("http://download.finance.yahoo.com/d/quotes.csv?s={$_GET[$symbol]}&f=e1l1", "r", false, $cxContext);
-	    if ($handle !== FALSE)
-	    {
-		$data1 = fgetcsv($handle);
-		$price = $data1[1];
-		fclose($handle);
-	    }
-	    else
-	    {
-		$data[$p] = "Error";
-		continue;
-	    }
+		if ($handle !== FALSE)
+		{
+			$data1 = fgetcsv($handle);
+			$price = $data1[1];
+			fclose($handle);
+		}
+		else
+		{
+			$data[$p] = "Error";
+			continue;
+		}
+		//connecting db
 		$connect = 'mysql:host=localhost;dbname=sfinance';
 		$user = 'root';
 		$pass = '13123016';
@@ -78,5 +84,6 @@ session_start();
 		$data[$spentx] = $spent;	
 	}
 	$data['balance'] = $balance;
+	//output json
 	print(json_encode($data));
 ?>

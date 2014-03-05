@@ -1,10 +1,13 @@
+//global object
 var global = {};
 
+//regular expressions
 var reg = {
 	"sym": /^(?:[a-zA-Z.]+)$/,
 	"num": /^(?:[0-9]+)$/
 };
 
+//validates symbols
 function check_s(symbol) {
 	if(!reg.sym.exec(symbol)) {
 		$('#price').html("Plese fill a vald symbol");
@@ -27,6 +30,7 @@ $(document).ready(function() {
 			return false;
 		}
 		global.quote_symbol = global.quote_symbol.toUpperCase();
+		//getting quote
 		$.ajax({
 			url: "../model/quoteajax.php",
 			data: {
@@ -52,6 +56,7 @@ $(document).ready(function() {
 		});
 		return false;
 	});
+	//unhides quantity
 	$('#button').click(function() {
 		$('#buy').fadeIn();
 		$('#button').hide();
@@ -61,8 +66,10 @@ $(document).ready(function() {
 		return false;
 	});
 
+	//buys shares
 	$('#buy2').click(function () {
 		var quantity = $('#quantity').val();
+		//validation
 		if(!reg.num.exec(quantity))
 		{
 			$('#warning_q').addClass("form-group has-error");
@@ -76,6 +83,7 @@ $(document).ready(function() {
 		$('#load1').fadeIn().css("display", "block");
 		$('#funds').hide();
 		$('#error1').hide();
+		//buys shares
 		$.ajax({
 			url: "../model/buyajax.php",
 			data: {

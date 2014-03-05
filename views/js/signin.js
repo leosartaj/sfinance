@@ -1,11 +1,14 @@
+//regular expression obj
 var reg = {
 	"user": /^(?:[0-9a-zA-Z]+)$/,
 	"alpha": /^(?:[a-zA-Z]+)$/,
 	"email": /^(?:[0-9a-z._]+)(?:[\@])(?:[a-z.]+)(?:[.])(?:[a-z]+)$/
 };
 
+//checking username password
 function check_log(username, password) {
 	var check = 0;
+	//validation
 	if((!reg.user.exec(username)) || (username.length < 6)) {
 		$('#warning_name').addClass("form-group has-error");
 		$('#length').fadeIn();
@@ -27,8 +30,10 @@ function check_log(username, password) {
 	return check;
 };
 
+//validates registration info
 function check_reg(info) {
 	var check = 0;
+	//validation
 	if(!reg.alpha.exec(info.first)) {
 		$('#warning_first').addClass("form-group has-error");
 		$('#firstl').fadeIn();
@@ -94,10 +99,12 @@ $(document).ready(function() {
 			},
 			success: function(data) {
 				data = JSON.parse(data);
+				//redirecting
 				if(data.value === "correct") {
 
 					window.location = "../homepage";
 				}
+				//validating wrong input
 				else {
 					$('#check').addClass("form-group has-error");
 					$('#auth').fadeIn();
@@ -120,15 +127,10 @@ $(document).ready(function() {
 		}
 		$.ajax({
 			url: "../model/registerajax.php",
-			data: {
-				'first': info.first,
-				'last': info.last,
-				'email': info.email,
-				'username': info.username,
-				'password': info.password
-			},
+			data: info,
 			success: function(data) {
 				data = JSON.parse(data);
+				//redirecting
 				if(data.value === "correct") {
 
 					window.location = "../homepage";
@@ -138,6 +140,7 @@ $(document).ready(function() {
 			return false;
 
 	});
+	//toggle functions
 	$('#tog_reg').click(function() {
 		$('#login').hide();
 		$('#register').fadeIn();

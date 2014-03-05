@@ -1,5 +1,6 @@
 <?php
 session_start();
+//proxy settings
     	$auth = base64_encode('pcpradhan:pradhan');
 	$aContext = array(
 	    'http' => array(
@@ -9,20 +10,21 @@ session_start();
 	    ),
 	);
 	$cxContext = stream_context_create($aContext);
-    // try to get quote
+	//open csv file
 	$handle = @fopen("http://download.finance.yahoo.com/d/quotes.csv?s={$_GET['symbol']}&f=e1l1", "r", false, $cxContext);
-    if ($handle !== FALSE)
-    {
-        $data = fgetcsv($handle);
-	$price = $data[1];
-        fclose($handle);
-    }
-    else
-    {
-	$data['info'] = "Error Internet";
-	print(json_encode($data));
-	exit;
-    }
+	if ($handle !== FALSE)
+	{
+		$data = fgetcsv($handle);
+		$price = $data[1];
+		fclose($handle);
+	}
+	else
+	{
+		$data['info'] = "Error Internet";
+		print(json_encode($data));
+		exit;
+	}
+	//connect db
 	$connect = 'mysql:host=localhost;dbname=sfinance';
 	$user = 'root';
 	$pass = '13123016';
@@ -70,6 +72,7 @@ session_start();
 		);
 	}
 	$data['info'] = "ok";
+	//output json
 	print(json_encode($data));
 	$dbh = null;
 ?>

@@ -8,6 +8,7 @@
   <div class="navbar-collapse collapse">
 	<ul class="nav navbar-nav">
 <?php
+	//sets up navbar
 	if(isset($_SESSION['username']))
 		echo("<li><a href=\"../dashboard\">Dashboard</a></li>");
 ?>
