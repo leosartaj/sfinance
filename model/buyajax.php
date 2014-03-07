@@ -1,10 +1,13 @@
 <?php
 session_start();
-	$path = "../includes/proxy.php";
-	if(file_exists($path)) {
-		require_once($path);
+	if(file_exists("../includes/proxy.php")) {
+		require_once("../includes/proxy.php");
+		$handle = @fopen("http://download.finance.yahoo.com/d/quotes.csv?s={$_GET['symbol']}&f=e1l1", "r", false, $cxContext);
 	}
-	$handle = @fopen("http://download.finance.yahoo.com/d/quotes.csv?s={$_GET['symbol']}&f=e1l1", "r", false, $cxContext);
+	else
+	{
+		$handle = @fopen("http://download.finance.yahoo.com/d/quotes.csv?s={$_GET['symbol']}&f=e1l1", "r");
+	}
 	if ($handle !== FALSE)
 	{
 		$data = fgetcsv($handle);
