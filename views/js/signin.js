@@ -132,8 +132,23 @@ $(document).ready(function() {
 				data = JSON.parse(data);
 				//redirecting
 				if(data.value === "correct") {
-
 					window.location = "../homepage";
+				}
+				if(data.email === "email") {
+					$('#warning_email').addClass("form-group has-error");
+					$('#takenemaill').fadeIn();
+				}
+				else {
+					$('#takenemaill').hide();
+					$('#warning_email').removeClass("form-group has-error");
+				}
+				if(data.name === "username") {
+					$('#warning_newname').addClass("form-group has-error");
+					$('#takennamel').fadeIn();
+				}
+				else {
+					$('#takennamel').hide();
+					$('#warning_newname').removeClass("form-group has-error");
 				}
 			}
 			});

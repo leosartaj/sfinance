@@ -49,10 +49,12 @@ if(isset($_SESSION['username']))
 		</div>
 		<div id="warning_email">
 		  <label class="control-label email" id="emaill">Please fill valid email</label>
+		  <label class="control-label takenemail" id="takenemaill">Email already in use</label>
 		  <input type="text" class="form-control" id=email placeholder="Email-Address">
 		</div>
 		<div id="warning_newname">
 		  <label class="control-label newname" id="newnamel">Please give a valid username</label>
+		  <label class="control-label takenname" id="takennamel">Username already taken</label>
 		  <input type="text" class="form-control" id=username_new placeholder="Username" autofocus>
 		</div>
 		<div id="warning_newpassword">
