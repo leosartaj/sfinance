@@ -19,6 +19,7 @@ $(document).ready(function() {
 	$('.img').fadeIn("slow");
 	$('#form_quote').submit(function() {
 		global.quote_symbol = $('#symbol').val();
+		$('#get_quote').button('loading');
 		$('#buy2').hide();
 		$('#buy').hide();
 		$('#funds').hide();
@@ -27,6 +28,8 @@ $(document).ready(function() {
 		$('#load').fadeIn().css("display", "block");
 		var check = check_s(global.quote_symbol);
 		if(check === 1) {
+			$('#get_quote').button('reset');
+			$('#load').hide();
 			return false;
 		}
 		global.quote_symbol = global.quote_symbol.toUpperCase();
@@ -39,6 +42,7 @@ $(document).ready(function() {
 			success: function(data) {
 				if(data.price1 !== "Error") {
 					$('#load').hide();
+					$('#get_quote').button('reset');
 					if(data.price1 != 0) {
 					    var write = global.quote_symbol + ": " + data.price1 + "$ ";
 					    $('#price').html(write);
@@ -49,6 +53,7 @@ $(document).ready(function() {
 					}
 				}
 				else {
+					$('#get_quote').button('reset');
 					$('#load').hide();
 					$('#price').html("error internet");
 				}

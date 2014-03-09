@@ -21,7 +21,7 @@ if(!isset($_SESSION['username']))
 		<img src="../views/gif/$Finance.gif" class="form-signin-heading img">
 		<input type="text" class=form-control name=quote placeholder="Get Quote" id=symbol>
 		<br>
-		<button class="btn btn-lg btn-primary btn-block" type=submit>Get Quote</button>
+		<button class="btn btn-lg btn-primary btn-block" data-loading-text="Getting Quote" id=get_quote type=submit>Get Quote</button>
 		<p><img class=load id=load src="../views/gif/load.gif"></p>
 		<div id=price class="text-muted"></div><button id=button class="btn btn-primary btn-xs">Buy Share</button>
 		<div id="warning_q">
