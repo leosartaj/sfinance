@@ -4,6 +4,8 @@ session_start();
 	require('../includes/PasswordHash.php');
 	//connecting db
 	require_once('../includes/sql.php');
+	$query = $dbh->query("SELECT username,password,user_id FROM users where username='{$_GET['username']}';");
+	$user1 = $query->fetch(PDO::FETCH_ASSOC);
 	$hasher = new PasswordHash(8,false);
 	//checking for hashed password
 	$check = $hasher->CheckPassword($_GET['password'], $user1['password']);
